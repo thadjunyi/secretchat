@@ -103,9 +103,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 	<script>
-	var socket = io.connect('https://secretchat-api-heroku.herokuapp.com', {
-  		path: '/chat'
-		});
+	var socket = io.connect('https://secretchat-api-heroku.herokuapp.com');
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
