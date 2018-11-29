@@ -104,8 +104,7 @@ def register():
         
         
 
-        return render_template("./index.html")
-    
+        return redirect(url_for('index'))    
     return render_template('./register.html')
 
 @app.route( '/chat', methods=['POST', 'GET'])
