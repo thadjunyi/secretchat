@@ -89,8 +89,7 @@ def login():
                 if roomText is not None:
                     for text in roomText:
                         succeed.append(text)
-                session['messages'] = succeed[1]
-                return redirect(url_for('.chat', messages=messages))
+                return redirect(url_for('.chat', message=succeed[0]))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
@@ -113,7 +112,7 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    messages = session['messages']
+    messages = message
     return render_template('./chat.html', data=messages)
 
 if __name__ == '__main__':
