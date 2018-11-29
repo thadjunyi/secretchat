@@ -24,7 +24,7 @@ socketio = SocketIO(app)
 
 @app.route( '/' )
 def index():
-    return render_template('./index.html')
+    return render_template('./chat.html')
 
 def messageReceived():
     print( 'message was received!!!' )
