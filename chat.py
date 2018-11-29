@@ -41,58 +41,60 @@ def handle_my_custom_event( json ):
     
 
 # Only POST for login as it will just process the login as the default is in login page, no template needed
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    db = mongo.db
-    users = db.users
-    login_user = users.find_one({'_id' : request.form['loginusername'].lower()})
-    if login_user:
-        hashloginpass = bcrypt.generate_password_hash(request.form['loginpassword'].encode('utf-8'))
-        decodepass = bcrypt.generate_password_hash(login_user['password']).decode('utf-8')
-        if ((bcrypt.check_password_hash(login_user['password'], request.form['loginpassword'])) and (login_user['_id']==request.form['loginusername'].lower())):
-            succeed = []
-            session['username'] = request.form['loginusername']
-            succeed.append(session['username'])
-            succeed.append(request.form['roomname'].upper())
-            roomName = succeed[1].lower()
-            oldRoomList = login_user['room list']
+    if request.method == 'POST':
+        db = mongo.db
+        users = db.users
+        login_user = users.find_one({'_id' : request.form['loginusername'].lower()})
+        if login_user:
+            hashloginpass = bcrypt.generate_password_hash(request.form['loginpassword'].encode('utf-8'))
+            decodepass = bcrypt.generate_password_hash(login_user['password']).decode('utf-8')
+            if ((bcrypt.check_password_hash(login_user['password'], request.form['loginpassword'])) and (login_user['_id']==request.form['loginusername'].lower())):
+                succeed = []
+                session['username'] = request.form['loginusername']
+                succeed.append(session['username'])
+                succeed.append(request.form['roomname'].upper())
+                roomName = succeed[1].lower()
+                oldRoomList = login_user['room list']
 
-            if oldRoomList is None:
-                newRoomList = []
-                newRoomList.append(roomName.lower())
-            else:
-                oldRoomList.append(roomName.lower())
-                newRoomList = list(set(oldRoomList))
-                
-            users.update_one({'_id' : request.form['loginusername'].lower()}, {'$set' : {'last room' : roomName, 'room list' : newRoomList}})
-            room = db.roomName.find_one({'room name' : roomName})
-            if room is None:
-                db.roomName.insert_one({'room name' : roomName})
-                oldMembers = []
-            else:
-                oldMembers = room['members']
-                
-            oldMembers.append(request.form['loginusername'].lower())
-            members = list(set(oldMembers))
-            db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
+                if oldRoomList is None:
+                    newRoomList = []
+                    newRoomList.append(roomName.lower())
+                else:
+                    oldRoomList.append(roomName.lower())
+                    newRoomList = list(set(oldRoomList))
 
-            room = mongo.db[roomName]
-            count = room.find().count()
-            if count > 100:
-                roomText =  room.find().skip(room.count()-100)
-                counter = 100
-            else:
-                roomText = room.find()
-                counter = count
+                users.update_one({'_id' : request.form['loginusername'].lower()}, {'$set' : {'last room' : roomName, 'room list' : newRoomList}})
+                room = db.roomName.find_one({'room name' : roomName})
+                if room is None:
+                    db.roomName.insert_one({'room name' : roomName})
+                    oldMembers = []
+                else:
+                    oldMembers = room['members']
 
-            succeed.append(counter)
-            if roomText is not None:
-                for text in roomText:
-                    succeed.append(text)
+                oldMembers.append(request.form['loginusername'].lower())
+                members = list(set(oldMembers))
+                db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
 
-            return render_template("./chat.html", data=succeed)
-        
-    return render_template("./index.html", data="Invalid username/password combination!")
+                room = mongo.db[roomName]
+                count = room.find().count()
+                if count > 100:
+                    roomText =  room.find().skip(room.count()-100)
+                    counter = 100
+                else:
+                    roomText = room.find()
+                    counter = count
+
+                succeed.append(counter)
+                if roomText is not None:
+                    for text in roomText:
+                        succeed.append(text)
+
+                return render_template("./chat.html", data=succeed)
+
+        return render_template("./index.html", data="Invalid username/password combination!")
+    return render_template('./index.html')    
 
 # POST is for register, GET returns the registration template
 @app.route('/register', methods=['POST', 'GET'])
