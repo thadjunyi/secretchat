@@ -89,7 +89,8 @@ def login():
                 if roomText is not None:
                     for text in roomText:
                         succeed.append(text)
-                return redirect(url_for('chat'))
+                session['messages'] = succeed
+                return redirect(url_for('chat', messages=messages))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
