@@ -103,7 +103,7 @@
 
 	<script>
 	const io = require('socket.io-client');
-	const socket = io('https://secretchat-api-heroku.herokuapp.com/chat');
+	const socket = io('https://secretchat-api-heroku.herokuapp.com');
 	
       // broadcast a message
       socket.on( 'connect', function() {
