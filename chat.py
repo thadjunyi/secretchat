@@ -89,7 +89,7 @@ def login():
                 if roomText is not None:
                     for text in roomText:
                         succeed.append(text)
-                return redirect(url_for('chat', message='testing'))
+                return redirect(url_for('chat', name=succeed[0], room=succeed[1]))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
@@ -112,7 +112,7 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    return render_template('./chat.html', message=request.args.get('message'))
+    return render_template('./chat.html', name=request.args.get('name'), room=request.args.get('room'))
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
