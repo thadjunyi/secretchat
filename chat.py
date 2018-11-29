@@ -76,7 +76,7 @@ def login():
                 members = list(set(oldMembers))
                 db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
                 
-                return redirect(url_for('chat'), name=succeed[0], room=succeed[1])
+                return redirect(url_for('chat', name=succeed[0], room=succeed[1]))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
