@@ -128,17 +128,6 @@
           $( 'input.message' ).val( '' ).focus()
         } )
       } )
-	  var chatDiv = document.getElementsByClassName('message_holder')[0]
-
-	  // capture message
-      socket.on( 'my response', function( msg ) {
-        console.log( msg )
-        if( typeof msg.user_name !== 'undefined' && msg.user_name !== '') {
-          $( 'h2' ).remove()
-          $( 'div.message_holder' ).append( '<div class="msg_bbl"><b style="color: #000">'+msg.date+"	"+msg.user_name+": "+'</b> '+msg.message+'</div>' )
-		  chatDiv.scrollTop = chatDiv.scrollHeight;
-		}
-      } )
 	  
     </script>
   </body>
