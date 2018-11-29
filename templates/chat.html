@@ -108,7 +108,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     
 	<script>
-      var socket = io.connect( 'http://' + document.domain + ':' + location.port )
+      io.configure(function () { 
+	io.set("transports", ["xhr-polling"]); 
+	io.set("polling duration", 10); 
+	});
+	var socket = new io.Socket();
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
