@@ -110,9 +110,9 @@ def register():
         return render_template("./register.html", data="That username already exists!")
     return render_template('./register.html')
 
-@app.route( '/chat/<message>', methods=['POST', 'GET'])
+@app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    return render_template('./chat.html', message=message)
+    return render_template('./chat.html', message=request.args.get('message'))
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
