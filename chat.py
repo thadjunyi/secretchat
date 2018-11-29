@@ -89,8 +89,6 @@ def login():
                 if roomText is not None:
                     for text in roomText:
                         succeed.append(text)
-
-                session['messages'] = succeed
                 return redirect(url_for('chat'))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
@@ -114,7 +112,7 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    return render_template('./chat.html')
+    return render_template('./chat.html', data=succeed)
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
