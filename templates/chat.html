@@ -108,7 +108,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     
 	<script>
-	var socket = io.connect('https://secretchat-api-heroku.herokuapp.com/socket.io/?EIO=3&transport=polling');
+	var app = express();
+	var server = app.listen(5000);
+	var socket = require('socket.io').listen(server);
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
