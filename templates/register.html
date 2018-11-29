@@ -125,7 +125,7 @@
 
 	<br><br><h1 class="h1"> Secret Chat Sign Up</h1>
 	<div class="registerbox">
-		<form method=POST action="{{ url_for('register') }}">
+		<form method=POST action="{{ url_for('login') }}">
 			<div class="mismatch" id='info_section'>{% if data=='Password Mismatched!' %}<p>{{ data }}</p>{% else %}<p>{{ data }}{% endif %}</div>
 			<h1> Sign Up </h1>
 			<input type="text" name="regusername" placeholder="Username">					
