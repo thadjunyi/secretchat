@@ -68,25 +68,25 @@
 <body>
     <div class="text-center well"><h1>Secret Chat</h1>
 		<form action="" method="POST">
-			<br>Room Name: <input type="text" class="room" value={% if messages %}{{ messages[1] }}{% endif %}>
+			<br>Room Name: <input type="text" class="room" value={% if data %}{{ data[1] }}{% endif %}>
 		</form></div>
 	<div class="signoutbtn">
 		<a href={{ url_for('login') }} class="button">Log Out</a>
 	</div>
 	<form action="" method="POST">
-		<input type="text" class="username" value={% if messages %}{{ messages[0] }}{% endif %}></br></br>
+		<input type="text" class="username" value={% if data %}{{ data[0] }}{% endif %}></br></br>
     </form>
 	<div class="container">
       <div class="col-sm-8">
         <div class="no_message" >
 		  </br>
           <div class="message_holder">
-		    {% if messages[2] != 0 %}
-				{% for msg in messages[3:] %}
+		    {% if data[2] != 0 %}
+				{% for msg in data[3:] %}
 					<div class="msg_bbl"><b style="color: #000">{{ msg['date'] }} {{ msg['name'] }}: </b> {{ msg['message'] }}</div>
 				{% endfor %}
 			{% else %}
-				<h2 class ="messages" style='color: #ccc'>No message yet..</h2>
+				<h2 class ="data" style='color: #ccc'>No message yet..</h2>
 			{% endif %}
 		  </div>
         </div>
