@@ -109,7 +109,8 @@
 
 	<script>
 
-	var socket = io.connect("ws://secretchat-api-heroku.herokuapp.com/socket.io/?EIO=4&transport=iosocket");
+	var channel = "/chat";
+        var socket = io.connect('https://' + document.domain + ':' + location.port + channel);
 
       // broadcast a message
       socket.on( 'connect', function() {
