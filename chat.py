@@ -52,8 +52,7 @@ def login():
             decodepass = bcrypt.generate_password_hash(login_user['password']).decode('utf-8')
             if ((bcrypt.check_password_hash(login_user['password'], request.form['loginpassword'])) and (login_user['_id']==request.form['loginusername'].lower())):
                 succeed = []
-                session['username'] = request.form['loginusername']
-                succeed.append(session['username'])
+                succeed.append(request.form['loginusername'])
                 succeed.append(request.form['roomname'].upper())
                 roomName = succeed[1].lower()
                 oldRoomList = login_user['room list']
