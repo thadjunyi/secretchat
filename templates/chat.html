@@ -108,10 +108,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     
 	<script>
-	var express = require('express');
-	var app = express();
-	var server = app.listen(5000);
-	var socket = require('socket.io').listen(server);
+	var channel = "/chat";
+        var socket = io.connect('http://' + document.domain + ':' + location.port + channel);
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
