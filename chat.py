@@ -114,7 +114,7 @@ def register():
 def chat():
     succeed = []
     succeed.append(message)
-    return render_template('./chat.html', data=succeed)
+    return render_template('./chat.html', data=message)
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
