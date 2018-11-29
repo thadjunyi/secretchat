@@ -123,4 +123,4 @@ if __name__ == '__main__':
     # app.run(debug=True)
     app.config['SESSION_TYPE'] = 'filesystem'
     sess.init_app(app)
-    socketio.run( app, debug = True)
+    socketio.run(app, debug = True)
