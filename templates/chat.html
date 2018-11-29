@@ -108,9 +108,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 
 	<script>
-	var channel = '/chat';
-        var socket = io.connect('http://' + document.domain + ':' + location.port + channel);
-	var exampleSocket = new WebSocket("ws://secretchat-api-heroku.herokuapp.com/socket.io/?EIO=4&transport=websocket");
+
+	var socket = new WebSocket("ws://secretchat-api-heroku.herokuapp.com/socket.io/?EIO=4&transport=websocket");
 
       // broadcast a message
       socket.on( 'connect', function() {
