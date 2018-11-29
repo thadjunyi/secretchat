@@ -76,7 +76,8 @@ def login():
                 members = list(set(oldMembers))
                 db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
                 
-                return redirect(url_for('chat'), name=succeed[0], room=succeed[1])
+                return redirect(url_for('chat'))
+            #, name=succeed[0], room=succeed[1]
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
@@ -99,24 +100,9 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    succeed = []
-    succeed.append(request.args.get('name'))
-    succeed.append(request.args.get('room'))
-    roomName = request.args.get('room').lower()
-    room = mongo.db[roomName]
-    count = room.find().count()
-    if count > 100:
-        roomText =  room.find().skip(room.count()-100)
-        counter = 100
-    else:
-        roomText = room.find()
-        counter = count
-
-    succeed.append(counter)
-    if roomText is not None:
-        for text in roomText:
-            succeed.append(text)
-    return render_template('./chat.html', data=succeed)
+    
+    return render_template('./chat.html')
+#, data=succeed
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
