@@ -90,7 +90,7 @@ def login():
                     for text in roomText:
                         succeed.append(text)
 
-                return render_template("./chat.html", data=succeed)
+                return redirect(url_for('chat', messages=succeed))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
