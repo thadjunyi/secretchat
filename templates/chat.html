@@ -66,9 +66,9 @@
 </head>
 
 <body>
-    <div class="text-center well"><h1>Secret Chat</h1>
+	<div class="text-center well"><h1>Secret Chat</h1>
 		<form action="" method="POST">
-			<br>Room Name: <input type="text" class="room" value={% if room %}{{ room }}{% endif %}>
+			<br>Room Name: <input type="text" class="room" value={% if data %}{{ data[1] }}{% endif %}>
 		</form></div>
 	<div class="signoutbtn">
 		<a href= "{{ url_for('login') }}" class="button">Log Out</a>
