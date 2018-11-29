@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<!-- Bootstrap CSS -->
+    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<title> Secret Chat </title>
+ 
+	<style>
+		.room{
+			text-align: center;
+			border: none;
+			background-color: transparent;
+		}
+		
+		.username{
+			position:absolute;
+			padding: 5px 10px;
+			border: none;
+			color: #555;
+			margin-bottom: 5px;
+			left: 13%;
+		}
+		
+		.sending {
+			position:absolute;
+			padding: 5px 10px;
+			border-radius: 10px;
+			color: #555;
+			margin-bottom: 5px;
+			top: 80%;
+			width: 75%;
+		  }
+		  
+		.signoutbtn
+		{
+			position:absolute;
+			transition: .5s ease;
+			-webkit-appearance: button;
+			-moz-appearance: button;
+			appearance: button;
+			text-decoration: none;
+			color: white;
+			height: 25px;
+			width:70px;
+			text-align: center;
+			top: 10%;
+			left: 93%;
+		}
+		
+		.message_holder{
+			vertical-align: text-bottom;
+			position: fixed;
+			height:300px;
+			width: 73%;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			padding-bottom: 10px;
+		}			
+    </style>
+</head>
+
+<body>
+    <div class="text-center well"><h1>Secret Chat</h1>
+		<form action="" method="POST">
+			<br>Room Name: <input type="text" class="room" value={% if data %}{{ data[1] }}{% endif %}>
+		</form></div>
+	<div class="signoutbtn">
+		<a href="http://localhost:5000" class="button">Log Out</a>
+	</div>
+	<form action="" method="POST">
+		<input type="text" class="username" value={% if data %}{{ data[0] }}{% endif %}></br></br>
+    </form>
+	<div class="container">
+      <div class="col-sm-8">
+        <div class="no_message" >
+		  </br>
+          <div class="message_holder">
+		    {% if data[2] != 0 %}
+				{% for msg in data[3:] %}
+					<div class="msg_bbl"><b style="color: #000">{{ msg['date'] }} {{ msg['name'] }}: </b> {{ msg['message'] }}</div>
+				{% endfor %}
+			{% else %}
+				<h2 class ="messages" style='color: #ccc'>No message yet..</h2>
+			{% endif %}
+		  </div>
+        </div>
+      </div>
+      <div class="sending">
+        <form action="" method="POST">
+			<div class="clearfix" style="margin-top: 5px;"></div>
+			<b>Type your message below </b>
+			<input type="text" class="message form-control" placeholder="Messages" height="100px;">
+			<div style="padding-top: 5px;"></div>
+			<button type="submit" class="btn btn-success" style="float: right;"><span class="glyphicon glyphicon-send" ></span> Send </button>
+		</form>
+      </div>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    
+	<script>
+      var socket = io.connect( 'http://' + document.domain + ':' + location.port )
+      // broadcast a message
+      socket.on( 'connect', function() {
+        socket.emit( 'my event', {
+          data: 'User Connected'
+        } )
+        var form = $( 'form' ).on( 'submit', function( e ) {
+          e.preventDefault()
+		  var room_name = $( 'input.room' ).val()
+          var user_name = $( 'input.username' ).val()
+          var user_input = $( 'input.message' ).val()
+		  var currentdate = new Date(); 
+		  var date = currentdate.toUTCString();
+          socket.emit( 'my event', {
+			room_name : room_name,
+			date : date,
+            user_name : user_name,
+            message : user_input
+          } )
+          // empty the input field
+          $( 'input.message' ).val( '' ).focus()
+        } )
+      } )
+	  var chatDiv = document.getElementsByClassName('message_holder')[0]
+
+	  // capture message
+      socket.on( 'my response', function( msg ) {
+        console.log( msg )
+        if( typeof msg.user_name !== 'undefined' && msg.user_name !== '') {
+          $( 'h2' ).remove()
+          $( 'div.message_holder' ).append( '<div class="msg_bbl"><b style="color: #000">'+msg.date+"	"+msg.user_name+": "+'</b> '+msg.message+'</div>' )
+		  chatDiv.scrollTop = chatDiv.scrollHeight;
+		}
+      } )
+	  
+    </script>
+	
+  </body>
+</html>
