@@ -102,9 +102,9 @@
     <script src="/socket.io/socket.io.js"></script>
 
 	<script>
-	import io from 'socket.io-client';
-	const socket = io('https://secretchat-api-heroku.herokuapp.com');
-	
+	var socket = io.connect('https://secretchat-api-heroku.herokuapp.com', {
+  		path: '/chat'
+		});
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
