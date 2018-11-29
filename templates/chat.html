@@ -99,12 +99,12 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
 	<script>
-	var socket = io('ws://secretchat-api-heroku.herokuapp.com/socket.io/?EIO=4&transport=websocket')
-
+	const io = require('socket.io-client');
+	const socket = io('https://secretchat-api-heroku.herokuapp.com/chat');
+	
       // broadcast a message
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
