@@ -91,7 +91,7 @@ def login():
                         succeed.append(text)
 
                 session['messages'] = succeed
-                return redirect(url_for('chat', messages=messages))
+                return redirect(url_for('chat'))
         return render_template("./index.html", data="Invalid username/password combination!")
     return render_template('./index.html')    
 
