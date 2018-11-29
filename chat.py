@@ -102,9 +102,14 @@ def register():
         users = mongo.db.users
         existing_user = users.find_one({'_id' : request.form['regusername']})
         
-        
-
-        return redirect(url_for('index'))    
+        if existing_user is None:
+            if (request.form['regpassword'] == request.form['regpassword2']):
+                hashpass = bcrypt.generate_password_hash(request.form['regpassword'].encode('utf-8'))
+                users.insert({'_id' : request.form['regusername'].lower(), 'password' : hashpass, 'password2' : request.form['regpassword'], 'room list' : None})
+                session['username'] = request.form['regusername']
+                return redirect(url_for('index')) 
+            return render_template("./register.html", data="Password Mismatched!")
+        return render_template("./register.html", data="That username already exists!")
     return render_template('./register.html')
 
 @app.route( '/chat', methods=['POST', 'GET'])
