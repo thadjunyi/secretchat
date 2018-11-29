@@ -116,8 +116,6 @@ def register():
     return render_template('./register.html')
 
 if __name__ == '__main__':
-    app.secret_key = 'secretchat'
+    app.secret_key = 'thisithadsecretchat'
     # app.run(debug=True)
-    app.config['SESSION_TYPE'] = 'filesystem'
-    sess.init_app(app)
     socketio.run( app, debug = True)
