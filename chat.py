@@ -112,7 +112,7 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    return render_template('./chat.html', data=succeed[0])
+    return render_template('./chat.html')
 
 if __name__ == '__main__':
     app.secret_key = 'secretchat'
