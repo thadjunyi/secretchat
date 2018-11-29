@@ -107,43 +107,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     
-	<script>
-      var socket = io.connect( 'http://' + document.domain + ':' + location.port )
-      // broadcast a message
-      socket.on( 'connect', function() {
-        socket.emit( 'my event', {
-          data: 'User Connected'
-        } )
-        var form = $( 'form' ).on( 'submit', function( e ) {
-          e.preventDefault()
-		  var room_name = $( 'input.room' ).val()
-          var user_name = $( 'input.username' ).val()
-          var user_input = $( 'input.message' ).val()
-		  var currentdate = new Date(); 
-		  var date = currentdate.toUTCString();
-          socket.emit( 'my event', {
-			room_name : room_name,
-			date : date,
-            user_name : user_name,
-            message : user_input
-          } )
-          // empty the input field
-          $( 'input.message' ).val( '' ).focus()
-        } )
-      } )
-	  var chatDiv = document.getElementsByClassName('message_holder')[0]
-
-	  // capture message
-      socket.on( 'my response', function( msg ) {
-        console.log( msg )
-        if( typeof msg.user_name !== 'undefined' && msg.user_name !== '') {
-          $( 'h2' ).remove()
-          $( 'div.message_holder' ).append( '<div class="msg_bbl"><b style="color: #000">'+msg.date+"	"+msg.user_name+": "+'</b> '+msg.message+'</div>' )
-		  chatDiv.scrollTop = chatDiv.scrollHeight;
-		}
-      } )
-	  
-    </script>
 	
   </body>
 </html>
