@@ -112,8 +112,6 @@ def register():
 
 @app.route( '/chat', methods=['POST', 'GET'])
 def chat():
-    succeed = []
-    succeed.append(message)
     return render_template('./chat.html', data=message)
 
 if __name__ == '__main__':
