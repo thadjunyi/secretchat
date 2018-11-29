@@ -139,7 +139,7 @@
 		<img src="https://cdn3.vectorstock.com/i/1000x1000/38/27/male-face-avatar-logo-template-pictogram-vector-11333827.jpg" class="avatar" height="50px" width = "50px">
 		<div class="mismatch" id='info_section'>{% if data %}<p>{{ data }}</p>{% endif %}</div></br>
 		<h2> Login Here </h2>
-		<form method=POST action="{{ url_for('chat') }}">			
+		<form method=POST action="{{ url_for('login') }}">			
 			<p>Username</p>
 			<input type="text" name="loginusername" placeholder="Enter Username">
 			<p>Password</p>
