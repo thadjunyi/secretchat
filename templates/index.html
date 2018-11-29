@@ -109,6 +109,12 @@
 		color: #000;
 	}
 	
+	.loginbox button:hover{
+		cursor: pointer;
+		background: #ffc107;
+		color: #000;
+	}
+		
 	.loginbox a{
 		text-decoration: none;
 		font-size: 12px;
@@ -133,14 +139,15 @@
 		<img src="https://cdn3.vectorstock.com/i/1000x1000/38/27/male-face-avatar-logo-template-pictogram-vector-11333827.jpg" class="avatar" height="50px" width = "50px">
 		<div class="mismatch" id='info_section'>{% if data %}<p>{{ data }}</p>{% endif %}</div></br>
 		<h2> Login Here </h2>
-		<form method=POST action="{{ url_for('login') }}">			
+		<form method=POST action="{{ url_for('chat') }}">			
 			<p>Username</p>
 			<input type="text" name="loginusername" placeholder="Enter Username">
 			<p>Password</p>
 			<input type="password" name="loginpassword" placeholder="Enter Password">
 			<p>Room Name</p>
 			<input type="text" name="roomname" placeholder="Enter Room Name">
-			<a  href="{{ url_for('chat') }}" class="button"> Login  </a>
+			<button type="submit", name=name="loginbtn" value="Login">Login</button>
+			<!--<a  href="{{ url_for('chat') }}" class="button"> Login  </a>-->
 			<!--Lost your password? <a href="{{ url_for('login') }}">Retrieve now</a><br>-->
 			Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>
 		</form>
