@@ -147,4 +147,4 @@ if __name__ == '__main__':
     # secret key for the application
     app.secret_key = 'secretchat'
     # start up the web server with socketio
-    socketio.run(app, debug = True)
+    socketio.run(app, debug=True)
