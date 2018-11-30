@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+	
 	<!-- Bootstrap CSS -->
-    
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
 	<title> Secret Chat </title>
-	
 	<style>
-		body
-		{
+		body {
 			margin: 0;
 			padding: 0;
 			background: #efefef;
@@ -25,9 +21,7 @@
 			font-family: sans-serif;
 			font-weight: 300;
 		}
-
-		.registerbox
-		{
+		.registerbox {
 			width: 320px;
 			height: 340px;
 			top: 35%;
@@ -40,8 +34,7 @@
 			background: #fff;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 		}
-		
-		.mismatch{
+		.mismatch {
 			font-weight: 300;
 			color: red;
 			text-align: center;
@@ -49,15 +42,12 @@
 			font-weight: bold;
 			margin-top: -30px;
 		}
-
-		h1
-		{
+		h1 {
 			margin: 0 0 20px 0;
 			font-weight: 300;
 			font-size: 28px;
 		}
-
-		.h1{
+		.h1 {
 			margin: 0;
 			width:97%;
 			float:left;
@@ -66,10 +56,8 @@
 			font-family: verdana;
 			font-size: 50px;
 		}
-	
 		input[type="text"],
-		input[type="password"]
-		{
+		input[type="password"] {
 			display: block;
 			box-sizing: border-box;
 			margin-bottom: 20px;
@@ -84,9 +72,7 @@
 			font-size: 15px;
 			transition: 0.2s ease;
 		}
-
-		.signupbtn
-		{
+		.signupbtn {
 			margin-bottom: 28px;
 			width: 120px;
 			height: 32px;
@@ -99,25 +85,20 @@
 			text-transform: uppercase;	
 			transition: 0.2s ea	se;
 			cursor: pointer;
-			
 		}
-		
-		.registerbox a{
+		.registerbox a {
 			text-decoration: none;
 			font-size: 12px;
 			line-height: 20px;
 			color: blue;
 		}
-		
 		input[type="submit"]:hover,
-		input[type="submit"]:focus
-		{
+		input[type="submit"]:focus {
 			background: #ff5722;
 			transition: 0.2s ease;
 		}
 	</style>
 </head>
-
 <body>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -131,9 +112,8 @@
 			<input type="text" name="regusername" placeholder="Username">					
 			<input type="password" name="regpassword" placeholder="Password">
 			<input type="password" name="regpassword2" placeholder="Confirm Password">
-			Already a user? <a href="{{ url_for('login') }}">Login here</a>
-			<input type="submit" class= "signupbtn" name="signupbtn" value="Sign Up">
-			
+			Already a user? <a href="{{ url_for('index') }}">Login here</a>
+			<input type="submit" class= "signupbtn" name="signupbtn" value="Sign Up">	
 		</form><br>
 	</div>
 </body>
