@@ -58,7 +58,7 @@ def login():
             decodepass = bcrypt.generate_password_hash(login_user['password']).decode('utf-8')
             # if the password matched
             if ((bcrypt.check_password_hash(login_user['password'], request.form['loginpassword'])) and (login_user['_id']==request.form['loginusername'].lower())):
-                roomName = request.form['roomname']
+                roomName = request.form['roomname'].lower()
                 # update the room list of the client account
                 oldRoomList = login_user['room list']
                 # if the client is a new user
@@ -78,7 +78,7 @@ def login():
                     oldMembers = []
                 else:
                     oldMembers = room['members']
-                oldMembers.append(request.form['loginusername'])
+                oldMembers.append(request.form['loginusername'].lower())
                 # ensures that the member list is unique
                 members = list(set(oldMembers))
                 db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
