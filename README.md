@@ -1,1 +1,1 @@
-# Secret Chat is a Local Web Chat Application which uses Python, Flask, SocketIO, mLab (Cloud-Hosted MongoDB), HTML and JavaScript
+# Secret Chat is a Web Chat Application hosted on Heroku using Python Web Server, Flask, SocketIO, mLab (Cloud-Hosted MongoDB), HTML and JavaScript
