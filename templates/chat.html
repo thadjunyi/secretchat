@@ -120,9 +120,6 @@
                     user_name : user_name,
                     message : user_input
                 } )
-		$('h2').remove()
-		$('div.message_holder').append('<div class="msg_bbl"><b style="color: #000">'+ user_name + " has joined the chat!" +'</b></div>')
-		chatDiv.scrollTop = chatDiv.scrollHeight;
                 // empty the input field
                 $('input.message').val('').focus()
             } )
