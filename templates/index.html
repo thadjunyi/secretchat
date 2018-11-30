@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+	
 	<!-- Bootstrap CSS -->
-    
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
 	<title> Secret Chat </title>
@@ -23,7 +22,6 @@
 		background-size: fit;
 		background-repeat: no-repeat;
 	}
-
 	.loginbox{
 		width: 320px;
 		height: 520px;
@@ -36,7 +34,6 @@
 		box-sizing: border-box;
 		padding: 70px 30px;
 	}
-
 	.avatar{
 		width: 100px;
 		height: 100px;
@@ -44,8 +41,7 @@
 		position: absolute;
 		top: -50px;
 		left: calc(50% - 50px);
-	}
-	
+	}	
 	.mismatch{
 		font-weight: 300;
 		color: red;
@@ -54,7 +50,6 @@
 		font-weight: bold;
 		margin-top: -30px;
 	}
-	
 	.h1{
 		margin: 0;
 		width:97%;
@@ -64,25 +59,21 @@
 		font-family: verdana;
 		font-size: 50px;
 	}
-
 	h2{
 		margin: 0;
 		padding: 0 0 20px;
 		text-align: center;
 		font-size: 22px;
 	}
-
 	.loginbox p{
 		margin: 0;
 		padding: 0;
 		font-weight: bold;
 	}
-
 	.loginbox input{
 		width: 100%;
 		margin-bottom: 20px;
 	}
-
 	.loginbox input[type="text"], input[type="password"]{
 		border: none;
 		border-bottom: 1px solid #fff;
@@ -92,7 +83,6 @@
 		color: #fff;
 		font-size: 16px;
 	}
-	
 	.loginbox input[type="submit"]{
 		border: none;
 		outline: none;
@@ -102,34 +92,23 @@
 		font-size: 18px;
 		border-radius: 20px;
 	}
-	
 	.loginbox input[type="submit"]:hover{
 		cursor: pointer;
 		background: #ffc107;
 		color: #000;
 	}
-	
-	.loginbox button:hover{
-		cursor: pointer;
-		background: #ffc107;
-		color: #000;
-	}
-		
 	.loginbox a{
 		text-decoration: none;
 		font-size: 12px;
 		line-height: 20px;
 		color: darkgrey;
 	}
-
 	.loginbox a:hover{
 		color: #ffc107;
 	}
 	</style>
 </head>
-
 <body>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -146,13 +125,10 @@
 			<input type="password" name="loginpassword" placeholder="Enter Password">
 			<p>Room Name</p>
 			<input type="text" name="roomname" placeholder="Enter Room Name">
-			<!--<button type="submit", name=name="loginbtn" value="Login">Login</button>-->
 			<input type="submit" name="loginbtn" value="Login">
-			<!--<a  href="{{ url_for('chat') }}" class="button"> Login  </a>-->
 			<!--Lost your password? <a href="{{ url_for('login') }}">Retrieve now</a><br>-->
 			Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>
 		</form>
 	</div>
 </body>
-
 </html>
