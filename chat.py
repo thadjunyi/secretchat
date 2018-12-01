@@ -85,7 +85,7 @@ def login():
                 
                 # if room name not given, default room name is 'secret'
                 if request.form['roomname'] == '':
-                    return return redirect(url_for('chat', name=request.form['loginusername'].upper(), room='Secret'))
+                    return redirect(url_for('chat', name=request.form['loginusername'].upper(), room='Secret'))
                 # redirect to chat room upon successful login with 2 parameters namely client name and room name
                 return redirect(url_for('chat', name=request.form['loginusername'].upper(), room=request.form['roomname'].upper()))
         # if the account can't be found or the username and password not match
