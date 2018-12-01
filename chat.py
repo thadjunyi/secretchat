@@ -82,7 +82,10 @@ def login():
                 # ensures that the member list is unique
                 members = list(set(oldMembers))
                 db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
-
+                
+                # if room name not given, default room name is 'secret'
+                if request.form['roomname'] == '':
+                    return return redirect(url_for('chat', name=request.form['loginusername'].upper(), room='Secret'))
                 # redirect to chat room upon successful login with 2 parameters namely client name and room name
                 return redirect(url_for('chat', name=request.form['loginusername'].upper(), room=request.form['roomname'].upper()))
         # if the account can't be found or the username and password not match
