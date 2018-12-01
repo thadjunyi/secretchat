@@ -84,7 +84,7 @@ def login():
                 db.roomName.update_one({'room name' : roomName}, {'$set' : {'members' : members}})
 
                 # redirect to chat room upon successful login with 2 parameters namely client name and room name
-                return redirect(url_for('chat', name=request.form['loginusername'], room=request.form['roomname'].upper()))
+                return redirect(url_for('chat', name=request.form['loginusername'].upper(), room=request.form['roomname'].upper()))
         # if the account can't be found or the username and password not match
         return render_template("./index.html", data="Invalid username/password combination!")
     # if 'GET', display the login form
