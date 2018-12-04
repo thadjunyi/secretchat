@@ -101,21 +101,24 @@ def register():
     if request.method == 'POST':
         users = mongo.db.users
         # to check for duplicate username in the database
-        existing_user = users.find_one({'_id' : request.form['regusername']})
-        # if no such username exist
-        if existing_user is None:
-            # to check if the password matched with the retyped password
-            if (request.form['regpassword'] == request.form['regpassword2']):
-                # hash the password
-                hashpass = bcrypt.generate_password_hash(request.form['regpassword'].encode('utf-8'))
-                # insert the account detail into the database
-                users.insert({'_id' : request.form['regusername'].lower(), 'password' : hashpass, 'password2' : request.form['regpassword'], 'room list' : None})
-                # redirect to login page upon successful register
-                return redirect(url_for('login'))
-            # if the password is not matched with the retyped password
-            return render_template("./register.html", data="Password Mismatched!")
-        # if the same username exist
-        return render_template("./register.html", data="That username already exists!")
+        if request.form['regusername'] != '' and request.form['regpassword'] != '' :
+            existing_user = users.find_one({'_id' : request.form['regusername']})
+            # if no such username exist
+            if existing_user is None:
+                # to check if the password matched with the retyped password
+                if (request.form['regpassword'] == request.form['regpassword2']):
+                    # hash the password
+                    hashpass = bcrypt.generate_password_hash(request.form['regpassword'].encode('utf-8'))
+                    # insert the account detail into the database
+                    users.insert({'_id' : request.form['regusername'].lower(), 'password' : hashpass, 'password2' : request.form['regpassword'], 'room list' : None})
+                    # redirect to login page upon successful register
+                    return redirect(url_for('login'))
+                # if the password is not matched with the retyped password
+                return render_template("./register.html", data="Password Mismatched!")
+            # if the same username exist
+            return render_template("./register.html", data="That username already exists!")
+        # if any field is empty
+        return render_template("./register.html", data="Please fill up the form!")
     # if 'GET', display the register form
     return render_template('./register.html')
 
