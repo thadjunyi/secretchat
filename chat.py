@@ -100,8 +100,9 @@ def register():
     # if 'POST', the client tries to register an account
     if request.method == 'POST':
         users = mongo.db.users
-        # to check for duplicate username in the database
+        # to check if there are any empty fields
         if request.form['regusername'] != '' and request.form['regpassword'] != '' :
+            # to check for duplicate username in the database
             existing_user = users.find_one({'_id' : request.form['regusername']})
             # if no such username exist
             if existing_user is None:
