@@ -37,10 +37,9 @@ def handle_my_custom_event(json):
     socketio.emit('my response', json, callback=messageReceived)
     # insert message into the database with the room name as the collection name
     roomName = str(json)
-    if 'User Connected' not in roomName:
-        roomCollection = json['room_name'].lower()
-        room = mongo.db[roomCollection]
-        storeMessage = room.insert({'name' : json['user_name'], 'date' : json['date'], 'message' : json['message']})
+    roomCollection = json['room_name'].lower()
+    room = mongo.db[roomCollection]
+    storeMessage = room.insert({'name' : json['user_name'], 'date' : json['date'], 'message' : json['message']})
 
 # url for login
 @app.route('/login', methods=['POST', 'GET'])
