@@ -36,7 +36,6 @@ def handle_my_custom_event(json):
     print('received my event: ' + str(json))
     socketio.emit('my response', json, callback=messageReceived)
     # insert message into the database with the room name as the collection name
-    roomName = str(json)
     roomCollection = json['room_name'].lower()
     room = mongo.db[roomCollection]
     storeMessage = room.insert({'name' : json['user_name'], 'date' : json['date'], 'message' : json['message']})
