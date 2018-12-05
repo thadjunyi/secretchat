@@ -51,7 +51,7 @@ def login():
         db = mongo.db
         users = db.users
         # if the room name is users or roomName which is used to stored information of the user and room
-        if request.form['roomname'].lower() == 'users' or request.form['roomname'].lower() == 'roomName':
+        if request.form['roomname'].lower() == 'users' or request.form['roomname'].lower() == 'roomname':
             return render_template("./index.html", data="The room name is reserved! Please key in other room name")
         # find the account with the username keyed by the client from the database
         login_user = users.find_one({'_id' : request.form['loginusername'].lower()})
